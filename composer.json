@@ -1,0 +1,25 @@
+{
+  "name": "clawrock/magento-testing",
+  "description": "Magento2 Test Case",
+  "keywords": ["magento", "unit", "test", "testing", "magento2"],
+  "type": "library",
+  "require": {
+    "php": ">=7.0",
+    "magento/framework": ">=100.1",
+    "magento/module-store": ">=100.1",
+    "phpunit/phpunit": "~6.2.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ClawRock",
+      "email": "office@clawrock.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "ClawRock\\MagentoTesting\\": "src/"
+    }
+  }
+}
