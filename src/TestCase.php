@@ -32,6 +32,20 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected $storeMock;
 
     /**
+     * Get ObjectManager helper instance
+     *
+     * @return \Magento\Framework\TestFramework\Unit\Helper\ObjectManager
+     */
+    protected function getObjectManager()
+    {
+        if ($this->objectManager === null) {
+            $this->objectManager = new ObjectManager($this);
+        }
+
+        return $this->objectManager;
+    }
+
+    /**
      * Shortcut for ObjectManager::getObject
      *
      * @param string $class
@@ -41,11 +55,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function createObject($class, $args = [])
     {
-        if ($this->objectManager === null) {
-            $this->objectManager = new ObjectManager($this);
-        }
-
-        return $this->objectManager->getObject($class, $args);
+        return $this->getObjectManager()->getObject($class, $args);
     }
 
     /**
@@ -124,6 +134,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->willReturn($createReturn ?: $this->returnSelf());
 
         return $factory;
+    }
+
+    /**
+     * Mock collection
+     *
+     * @param string $class
+     * @param array  $data
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function mockCollection($class, $data = [])
+    {
+        return $this->getObjectManager()->getCollectionMock($class, $data);
     }
 
     /**
